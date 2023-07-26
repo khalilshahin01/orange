@@ -2,25 +2,20 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+        stage('Build') {
             steps {
-                // Checkout your source code from version control system (e.g., Git)
-                // For example:
-                // git 'https://github.com/your/repo.git'
+                echo 'Building..'
             }
         }
-
-        stage('Build Docker Image') {
+        stage('Test') {
             steps {
-                // Build the Docker image using the Dockerfile in the repository root
-                script {
-                    docker.withRegistry('https://registry.example.com', 'docker_credentials_id') {
-                        def dockerImage = docker.build("image-from-jenkins:v1")
-                        dockerImage.push()
-                    }
-                }
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
             }
         }
     }
-}
 
