@@ -1,19 +1,24 @@
 pipeline {
     agent any
+
     stages {
-        stage('Majdi') {
+        stage('Checkout') {
             steps {
-                git branch: 'main', credentialsId: '6f8cfc13-6914-4410-bf35-0b0fc254d08a', url: 'https://github.com/khalilshahin01/orange.git'
+                // Checkout your source code from version control system (e.g., Git)
+                // For example:
+                // git 'https://github.com/your/repo.git'
             }
         }
-        stage('Khalil') {
+
+        stage('Build Docker Image') {
             steps {
-                sh 'docker build -t image-from-jenkins:v1 .'
-            }
-        }
-        stage('Omar') {
-            steps {
-                sh 'echo done image creation'
+                // Build the Docker image using the Dockerfile in the repository root
+                script {
+                    docker.withRegistry('https://registry.example.com', 'docker_credentials_id') {
+                        def dockerImage = docker.build("image-from-jenkins:v1")
+                        dockerImage.push()
+                    }
+                }
             }
         }
     }
