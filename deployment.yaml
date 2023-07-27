@@ -2,17 +2,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: khalil
-  name: khalil
+    app: OrangeDevOps
+  name: OrangeDevOps
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: khalil
+      app: OrangeDevOps
   template:
     metadata:
       labels:
-        app: khalil
+        app: OrangeDevOps
     spec:
       containers:
       - image: khalilshahin01/image-from-jenkins:v1
