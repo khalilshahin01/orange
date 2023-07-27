@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: khalil
+  name: khalil
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: khalil
+  template:
+    metadata:
+      labels:
+        app: khalil
+    spec:
+      containers:
+      - image: khalilshahin01/image-from-jenkins:v1
+        name: image-from-jenkins
