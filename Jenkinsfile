@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Khalil') {
             steps {
-                sh 'docker build -t image-from-jenkins:v1 .'
+                sh 'docker build -t khalilshahin01/image-from-jenkins:v1 .'
             }
         }
         
@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'DockerHub') {
-                        docker.image('image-from-jenkins:v1').push()
+                        docker.image('khalilshahin01/image-from-jenkins:v1').push()
                     }
                 }
             }
