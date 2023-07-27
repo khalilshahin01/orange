@@ -9,7 +9,7 @@ pipeline {
         
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t khalilshahin01/image-from-jenkins:v1 .'
+                sh 'docker build -t khalilshahin01/image-from-jenkins:$(BUILD_NUMBER) .'
             }
         }
         
@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'DockerHub') {
-                        docker.image('khalilshahin01/image-from-jenkins:v1').push()
+                        docker.image('khalilshahin01/image-from-jenkins:$(BUILD_NUMBER)').push()
                     }
                 }
             }
