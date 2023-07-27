@@ -14,8 +14,10 @@ pipeline {
         
         stage('Push') {
             steps {
-                withDockerRegistry(credentialsId: 'DockerHub') {
-                    docker.image('image-from-jenkins:v1').push()
+                script {
+                    withDockerRegistry(credentialsId: 'DockerHub') {
+                        docker.image('image-from-jenkins:v1').push()
+                    }
                 }
             }
         }
