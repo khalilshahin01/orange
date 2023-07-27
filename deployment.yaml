@@ -16,4 +16,5 @@ spec:
     spec:
       containers:
       - image: khalilshahin01/image-from-jenkins:v1
+        imagePullPolicy: Always
         name: image-from-jenkins
