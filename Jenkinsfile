@@ -8,9 +8,18 @@ pipeline {
         }
         stage('Khalil') {
             steps {
-                sh '/usr/bin/docker build -t image-from-jenkins:v1 .'
+                sh 'docker build -t image-from-jenkins:v1 .'
             }
         }
+        
+        stage('Push') {
+            steps {
+                withDockerRegistry(credentialsId: 'DockerHub') {
+                    docker.image('image-from-jenkins:v1').push()
+                }
+            }
+        }
+        
         stage('Omar') {
             steps {
                 sh 'echo done image creation'
